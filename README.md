@@ -57,3 +57,4 @@ Instead of running meteor, use the following comand:
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2018 © 
+
