@@ -49,28 +49,30 @@ class RegistrarProduccion extends Component {
 
 
       Meteor.call('producciones.insert', nuevaProduccion, (error, result) => {
-
-        if(error)
-        {
-          console.log('Error al registrar la producción: ', error.reason);
-          this.setState({
-            error:error.reason         
-          });
-        }
-        else {
-          console.log('Se inserto una nueva produccion', nuevaProduccion);
-          this.setState({
-            error:'',
-            redirectAppMain: !this.state.redirectAppMain
-          });
-        }
-
+            onErrorInSubmit(error, result);
       }); 
     }
     else
     {
       this.setState({
         error: 'Debe tener por lo menos 1 rol registrado. Verifique y vuelva a intentar'
+      });
+    }
+  }
+  
+  onErrorInSubmit(error, result){
+    if(error)
+    {
+      console.log('Error al registrar la producción: ', error.reason);
+      this.setState({
+        error:error.reason         
+      });
+    }
+    else {
+      console.log('Se inserto una nueva produccion', nuevaProduccion);
+      this.setState({
+        error:'',
+        redirectAppMain: !this.state.redirectAppMain
       });
     }
   }
