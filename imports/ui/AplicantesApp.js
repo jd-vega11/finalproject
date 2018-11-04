@@ -30,13 +30,13 @@ class AplicantesApp extends Component {
     }
 
     renderAplicantes() {
-        let filteredAplicaciones = this.props.aplicaciones;
-        let idUser = this.props.currentUser && this.props.currentUser._id;
+        let aplicacionesFiltradas = this.props.aplicaciones;
+        let idUsuario = this.props.currentUser && this.props.currentUser._id;
 
         //se filtran las aplicaciones a las que el id publicador sea igual al mio
-        filteredAplicaciones = filteredAplicaciones.filter(aplicacion => aplicacion.idPublicador == idUser);
+        aplicacionesFiltradas = aplicacionesFiltradas.filter(aplicacion => aplicacion.idPublicador == idUsuario);
 
-        return filteredAplicaciones.map((aplicacion) => {
+        return aplicacionesFiltradas.map((aplicacion) => {
                
         //busco al usuario de esta aplicacion
         let usuario = Meteor.users.findOne(aplicacion.idPublicador);
