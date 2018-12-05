@@ -33,7 +33,7 @@ class NavBar extends Component {
   cargarBoton() {
     if(this.state.mostrar===false)
     {
-      if(Artistas.find({idArtista: this.props.currentUser._id}).fetch()[0].headline == null)
+      if(typeof Artistas.find({idArtista: this.props.currentUser._id}).fetch()[0] !== "undefined" && Artistas.find({idArtista: this.props.currentUser._id}).fetch()[0].headline == null)
       {
         this.setState({ mostrar: true });
       }
