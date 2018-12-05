@@ -84,29 +84,38 @@ class ArtistaDetail extends Component
           
           <div className="card">        
             <div className="card-body">
-              <h6 className="card-title">Un poco más sobre {this.props.artista.profile.nombre} </h6>               
-              <p className="card-text">{this.props.artista.profile.descripcion}</p>
+              <h6 className="card-title"><b>Un poco más sobre </b>{this.props.artista.profile.nombre} </h6>               
+              <p className ="tags">Descripción</p><p className="card-text">{this.props.artista.profile.descripcion}</p>
               {
                 this.props.artista.headline != null ? 
-                  <p className="card-text">{this.props.artista.headline}</p>
+                <div><p className ="tags">Encabezado</p><p className="card-text">{this.props.artista.headline}</p></div>
                   : ''
               }
               {
                 this.props.artista.industry != null ? 
-                  <p className="card-text">{this.props.artista.industry}</p>
+                  <div><p className ="tags">Nombre</p><p className="card-text">{this.props.artista.firstName}</p></div>
+                  : ''
+              }
+              {
+                this.props.artista.industry != null ? 
+                  <div><p className ="tags">Apellido</p><p className="card-text">{this.props.artista.lastName}</p></div>
+                  : ''
+              }
+              {
+                this.props.artista.industry != null ? 
+                  <div><p className ="tags">Industria</p><p className="card-text">{this.props.artista.industry}</p></div>
                   : ''
               }
               {
                 this.props.artista.location != null ? 
-                  <p className="card-text">{this.props.artista.location}</p>
+                  <div><p className ="tags">Ubicación</p><p className="card-text">{this.props.artista.location}</p></div>
                   : ''
               }
               {
                 this.props.artista.numPositions != null ? 
-                  <p className="card-text">{this.props.artista.numPositions}</p>
+                  <div><p className ="tags">Número de posiciones</p><p className="card-text">{this.props.artista.numPositions}</p></div>
                   : ''
               }
-  
             </div>                     
           </div>
         

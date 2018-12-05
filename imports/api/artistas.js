@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { HTTP } from 'meteor/http'
 
 export const Artistas = new Mongo.Collection('artistas');
 
@@ -35,5 +36,15 @@ Meteor.methods({
     check(idArtista, String);
 
     Artistas.update(idArtista, { $set: { firstName: firstName, lastName:lastName, headline:headline, industry:industry, location:location, numConnections:numConnections, numPositions:numPositions} });
+  },
+
+  'AccesoApi'(c) {
+    let token =  HTTP.call('POST', 'https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=' + c + '&redirect_uri=https://finalprojectr11.herokuapp.com&client_id=78thawjoan2g2s&client_secret=SstD4bmgYig2cTV0')
+    let access = JSON.parse(token.content).access_token;
+    
+    let datos = HTTP.call('GET','https://api.linkedin.com/v1/people/~:(public-profile-url,id,positions,specialties,first-name,last-name,headline,num-connections,location,industry,summary,picture-url)?format=json&oauth2_access_token=' + access);
+    let respuesta = JSON.parse(datos.content);
+
+   return respuesta; 
   }
 });

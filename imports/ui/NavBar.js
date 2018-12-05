@@ -12,13 +12,11 @@ class NavBar extends Component {
 
     this.state = {
       RegistradoLinkedIn: false,
-      access: '4',
       mostrar: false
     };
 
     this.verificarLinkedIn = this.verificarLinkedIn.bind(this);
     this.cargarBoton = this.cargarBoton.bind(this);
-    this.cargarDatos = this.cargarDatos.bind(this);
     this.cargaMongo = this.cargaMongo.bind(this);
   }
 
@@ -42,14 +40,7 @@ class NavBar extends Component {
     }
   }
 
-  cargarDatos() {
-    fetch('https://api.linkedin.com/v1/people/~:(public-profile-url,id,positions,specialties,first-name,last-name,headline,num-connections,location,industry,summary,picture-url)?format=json&oauth2_access_token=' + this.state.access, {method: 'GET'})
-      .then(response => response.json())
-      .then(data => {console.log(data);this.cargaMongo(data);});
-  }
-
   cargaMongo(data) {
-    console.log(data);
     const firstName = data.firstName;
     const lastName = data.lastName;
     const headline = data.headline;
@@ -68,7 +59,16 @@ class NavBar extends Component {
       {
         this.cargarBoton();
       }
-
+    }
+  }
+  
+  componentDidUpdate()
+  {
+    if (this.props.currentUser != null) {
+      if(Artistas.find({}).fetch().length !== 0)
+      {
+        this.cargarBoton();
+      }
     }
   }
 
@@ -82,14 +82,8 @@ class NavBar extends Component {
     if (c != null) {
       this.setState({ RegistradoLinkedIn: true });
 
+      Meteor.call('AccesoApi', c, (err, datos) => {console.log(datos);this.cargaMongo(datos);});
 
-
-
-      fetch('https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=' + c + '&redirect_uri=https://finalprojectr11.herokuapp.com&client_id=78thawjoan2g2s&client_secret=SstD4bmgYig2cTV0', 
-        { 'Access-Control-Allow-Origin': '*', method: 'POST' })
-        .then(response => response.json())
-        .then(data => this.setState({ access: data.access_token }))
-        .then(data => this.cargarDatos());
     }
 
     console.log(c);

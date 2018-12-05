@@ -38,8 +38,26 @@ h6 {
   text-align: center !important;
 }
 
+.espacio{
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+.nuevaP{
+  color:black !important;
+}
+
+.rolesC{
+  color:black !important;
+}
+
 .iconos{
     fill: #ffffff !important;
+}
+
+.iconoLink{
+  fill: #ffffff !important;
+  font-size: 3em;
 }
 
 .fa {
@@ -54,4 +72,8 @@ h6 {
 .btn{
   margin-right:1em;
   margin-bottom:1em;
+}
+
+.tags {
+  font-weight: bold !important;
 }

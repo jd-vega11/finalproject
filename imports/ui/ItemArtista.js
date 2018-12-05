@@ -25,9 +25,10 @@ class ItemArtista extends Component
       <div className="card justify-content-between align-items-center w-50">
         <img className="card-img-top rounded-circle w-25" src="img.png" alt="Profile picture" />
         <div className="card-body">
-          <button type="button" className="btn btn-primary" onClick = {this.handleMasInformacion}>
+        {this.props.artista.headline != null ? <div><i className="fab fa-linkedin iconoLink"></i><br/></div>:''}
+          <a href="#"><button type="button" className="btn btn-primary" onClick = {this.handleMasInformacion}>
             <h5 className="card-title">{this.props.artista.profile.nombre}</h5>
-          </button>
+          </button></a>
         </div>
         <div className="card-footer">
           <small className="text-muted">{this.props.artista.profile.profesion}</small>

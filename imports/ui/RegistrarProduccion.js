@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-
 import ItemRol from './ItemRol.js';
 import {Redirect} from 'react-router-dom';
 
@@ -194,13 +193,13 @@ class RegistrarProduccion extends Component {
               <div className="row">
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Nombre</label>
+                    <label className="nuevaP">Nombre</label>
                     <input name="nombre" ref={(nombre) => this.nombre=nombre} className="form-control" required="required" type="text"/>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Tipo</label>
+                    <label className="nuevaP">Tipo</label>
                     <input name="tipo" ref={(tipo) => this.tipo=tipo} className="form-control" required="required" type="text"/>
                   </div>
                 </div>
@@ -208,13 +207,13 @@ class RegistrarProduccion extends Component {
               <div className="row">
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Fecha</label>
+                    <label className="nuevaP">Fecha</label>
                     <input name="fecha" ref={(fecha) => this.fecha=fecha} className="form-control" required="required" type="date"/>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Hora</label>
+                    <label className="nuevaP">Hora</label>
                     <input name="hora" ref={(hora) => this.hora=hora} className="form-control" required="required" type="time"/>
                   </div>
                 </div> 
@@ -222,13 +221,13 @@ class RegistrarProduccion extends Component {
               <div className="row">
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Lugar</label>
+                    <label className="nuevaP">Lugar</label>
                     <input name="lugar" ref={(lugar) => this.lugar=lugar} className="form-control" required="required" type="text"/>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Duración en minutos</label>
+                    <label className="nuevaP">Duración en minutos</label>
                     <input name="duracion" ref={(duracion) => this.duracion=duracion} className="form-control" type="number"/>
                   </div>
                 </div> 
@@ -236,33 +235,35 @@ class RegistrarProduccion extends Component {
               <div className="row">
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Genero</label>
+                    <label className="nuevaP">Genero</label>
                     <input name="genero" ref={(genero) => this.genero=genero} className="form-control" required="required" type="text"/>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label>Grupo/Compañia</label>
+                    <label className="nuevaP">Grupo/Compañia</label>
                     <input name="grupo" ref={(grupo) => this.grupo=grupo} className="form-control" required="required" type="text"/>
                   </div>
                 </div> 
               </div>
               <div className="form-group">
-                <label>Descripción</label>
+                <label className="nuevaP">Descripción</label>
                 <textarea className="form-control" ref={(descripcion) => this.descripcion=descripcion} rows="4"/>
               </div>
 
               {this.renderRoles()}
 
               <div className="row">
-                <button type="button" className="" onClick={this.agregarRol}> Agregar rol</button>
+                <b className="nuevaP">Debe agregar al menos un rol para registrar la producción</b>
               </div>
-                       
+              <div className="row">
+                <button type="button" className="nuevaP espacio" onClick={this.agregarRol}> Agregar rol</button>
+              </div>       
               
               {this.appMainPage( )}    
 
               <div className="row">         
-                <button type="submit" className="btn btn-submit"> Agregar Produccion </button>
+                <button type="submit" className="btn btn-submit nuevaP"> Agregar Produccion </button>
               </div>
             </form>
           </div>
