@@ -17,7 +17,7 @@ Meteor.methods({
   'artistas.insert'(idArtista,profile,firstName,lastName,headline,industry,location,numConnections,numPositions) {
 
     check(idArtista, String);
-
+    //check(profile, String)
     Artistas.insert({
       idArtista,
       profile,
