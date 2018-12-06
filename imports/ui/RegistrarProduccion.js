@@ -190,7 +190,7 @@ class RegistrarProduccion extends Component {
         {this.renderError()}           
         <div className="row">
           <div className="col-md-12">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} aria-label="form for register a new production">
               <div className="row">
                 <div className="col-md-6">
                   <div className="form-group">
