@@ -115,6 +115,8 @@ class NavBar extends Component {
                 </div>
               </a> : ''
             }
+            {/*Podrían Poner un título que indique en el componente produccioneslist que indiquen que se encuentran en producciones, ya que el navBar no da feedback de en donde se encuentra el usuario  */}
+            {/*Esto aplica para todas las demas opciones del navBar*/} 
             <div className="col nav-item navbar-tab ">
               <Link className="nav-link hvr-underline-from-center linksnavbar" to="/produccioneslist">Producciones</Link>
               <i className="fas fa-palette iconos"></i>
