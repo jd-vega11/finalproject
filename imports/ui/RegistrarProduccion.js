@@ -6,6 +6,10 @@ import {Redirect} from 'react-router-dom';
 
 // App component - represents the whole app
 
+{/*
+Considero que deberia existir un boton de ir hacia atras en caso en que uno no desee continuar con el registro de la produccion , 
+tuve una duda con las producciones yo puedo registrar una produccion con fecha que ya paso ?  
+*/}
 class RegistrarProduccion extends Component {
 
 
