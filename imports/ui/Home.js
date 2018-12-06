@@ -6,7 +6,10 @@ export default class App extends Component {
   constructor(props) {
     super(props);
   }
-
+  {/*
+  Seria bueno que el usuario supiera que debe bajar para ver estas opciones , a primera vista parece que fuera una sola pagina de web  
+  de home, no se intuye que hay que bajar 
+  */}
   render() {
     return (
         <div className="header-2">
