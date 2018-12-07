@@ -76,11 +76,9 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-
     if(Artistas.find({}).fetch().length !== 0){
          this.verificarLinkedIn();
       }
-
     console.log(window.location.href);
     var url_string = window.location.href;
     var url = new URL(url_string);
