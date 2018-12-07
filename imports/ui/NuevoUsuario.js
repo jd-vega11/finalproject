@@ -48,7 +48,7 @@ class NuevoUsuario extends Component {
           redirectSignIn: !this.state.redirectSignIn
         });
 
-        Meteor.call('artistas.insert', Meteor.userId(), newUser.profile,null,null,null,null,null,null,null);   
+        Meteor.call('artistas.insert', Meteor.userId(), newUser.profile,null,null,null,null,null,null,null,null,null,null);   
       }
     });
 
@@ -125,7 +125,7 @@ class NuevoUsuario extends Component {
                 </div>   
 
                 {this.signIn()}                  
-                <button type="submit" className="btn btn-submit">Regístrate!</button>          
+                <button type="submit" className="btn btn-primary">Regístrate!</button>          
               
               </form>              
             </div>

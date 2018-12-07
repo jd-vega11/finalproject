@@ -100,7 +100,7 @@ export default class Login extends Component {
                 </FormGroup>
                 {this.appMainPage( )}                      
 
-                <button type="submit" disabled={!this.validateForm()} className="btn btn-submit"> Sign In!</button>
+                <button type="submit" disabled={!this.validateForm()} className="btn btn-primary"> Sign In!</button>
 
                 <div className="row">
                 </div>

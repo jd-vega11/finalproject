@@ -23,13 +23,19 @@ class ItemProduccion extends Component
     return (
       <div className="card">        
         <div className="card-body">
-          <h6 className="card-title">{this.props.produccion.nombre}</h6>
-          <h6 className="card-subtitle mb-2 text-muted">Tipo: {this.props.produccion.tipo}</h6>
+          <h6 className="card-title" id="titulo-produccion">{this.props.produccion.nombre}</h6>
+          <h6 className="card-subtitle mb-2 text-muted" id="subtitulo-produccion">Tipo: {this.props.produccion.tipo}</h6>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">¿Cuándo? El {this.props.produccion.fecha} a las {this.props.produccion.hora}</li>
-          <li className="list-group-item">¿Dónde? {this.props.produccion.lugar}</li>
-          <li className="list-group-item">Agrupación/compañia: {this.props.produccion.grupo}</li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">¿Cuándo? </span> 
+            <span id="info-produccion"> El {this.props.produccion.fecha} a las {this.props.produccion.hora}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">¿Dónde? </span>
+            <span id="info-produccion"> {this.props.produccion.lugar}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Agrupación/compañia: </span>
+            <span id="info-produccion"> {this.props.produccion.grupo}</span></li>
         </ul>
         <div className="card-body">
           <button type="button" className="btn btn-primary" onClick={this.handleMasInformacion}>Más información</button>           

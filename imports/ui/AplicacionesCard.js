@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
-
+import {Link} from 'react-router-dom';
+import { Artistas } from '../api/artistas.js';
 
 export default class AplicacionesCard extends Component {
 
@@ -62,26 +63,53 @@ export default class AplicacionesCard extends Component {
     return (
       <div className="card">            
         <ul className="list-group list-group-flush">        
-          <li className="list-group-item"><strong>Estado solicitud: </strong> {this.renderAceptado()}</li> 
-          <li className="list-group-item"><strong>Nombre: </strong> {this.props.produccion.nombre}</li>          
-          <li className="list-group-item"><strong>Rol aplicado: </strong> {this.props.aplicacion.rol.rol}</li>
-          <li className="list-group-item"><strong>Descripción: </strong> {this.props.produccion.descripcion}</li>
-          <li className="list-group-item"><strong>Fecha: </strong>{this.props.produccion.fecha}</li>
-          <li className="list-group-item"><strong>Hora: </strong>{this.props.produccion.hora}</li>
-          <li className="list-group-item"><strong>Lugar: </strong>{this.props.produccion.lugar}</li>
-          <li className="list-group-item"><strong>Tipo: </strong>{this.props.produccion.tipo}</li>
-          <li className="list-group-item"><strong>Genero: </strong>{this.props.produccion.genero}</li>
-          <li className="list-group-item"><strong>Duración: </strong>{this.props.produccion.duracion}</li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Estado solicitud:</span> {this.renderAceptado()}</li> 
+          <li className="list-group-item">
+            <span id="indicador-produccion">Nombre: </span> 
+            <span id="info-produccion">{this.props.produccion.nombre}</span></li>          
+          <li className="list-group-item">
+            <span id="indicador-produccion">Rol aplicado: </span> 
+            <span id="info-produccion">{this.props.aplicacion.rol.rol}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Descripción: </span> 
+            <span id="info-produccion">{this.props.produccion.descripcion}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Fecha: </span>
+            <span id="info-produccion">{this.props.produccion.fecha}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Hora: </span>
+            <span id="info-produccion">{this.props.produccion.hora}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Lugar: </span>
+            <span id="info-produccion">{this.props.produccion.lugar}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Tipo: </span>
+            <span id="info-produccion">{this.props.produccion.tipo}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Genero: </span>
+            <span id="info-produccion">{this.props.produccion.genero}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Duración: </span>
+            <span id="info-produccion">{this.props.produccion.duracion}</span></li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Publicador:  </span>
+            <Link to={{pathname: `/artistaslist/${this.props.aplicacion.idPublicador}`, state: {artista: Artistas.findOne({idArtista:this.props.aplicacion.idPublicador})}}}>
+              <button type="button" className="btn btn-primary">
+                <i className="fas fa-search-plus" id="icono-masinfo"></i>               
+              </button>
+            </Link> 
+          </li> 
         </ul>
 
         {/*boton para borrar la aplicacion*/}
         {this.props.aplicacion.idAplicante = this.props.currentUser ?
           <div className="card-body">
-            <a href="#" className="btn btn-danger" onClick={this.removerAplicacion}>Borrar aplicacion</a>
+            <a href="#" className="btn btn-primary" onClick={this.removerAplicacion}>Borrar aplicacion</a>
             {this.props.aplicacion.leidaAplicante === false ? 
-              <a href="#" className="btn btn-danger" onClick={this.marcarComoLeida}>Marcar como leída</a>
+              <a href="#" className="btn btn-primary" onClick={this.marcarComoLeida}>Marcar como leída</a>
               :
-              <a href="#" className="btn btn-danger" onClick={this.marcarComoNoLeida}>Dejar no leída</a>
+              <a href="#" className="btn btn-primary" onClick={this.marcarComoNoLeida}>Dejar no leída</a>
             }
           </div> : ''}
       </div>

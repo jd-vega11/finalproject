@@ -10,7 +10,7 @@ import AplicantesApp from './ui/AplicantesApp.js';
 import ArtistasList from './ui/ArtistasList.js';
 import MisAplicacionesApp from './ui/MisAplicacionesApp.js';
 import ProduccionesList from './ui/ProduccionesList.js';
-import About from './ui/About.js';
+import ArtistaDetail from './ui/ArtistaDetail.js';
 import Home from './ui/Home.js';
 
 export const AppRoutes = () => (
@@ -32,7 +32,7 @@ export const AppRoutes = () => (
 
       <Route exact path='/produccioneslist' component={ProduccionesList}/>
 
-      <Route exact path='/about' component={About}/>
+      <Route exact path="/artistaslist/:artistaId" component={ArtistaDetail}/>
     </div>
   </Router>
 );

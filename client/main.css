@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic|Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
 
 body {
   overflow-x: hidden;
@@ -24,6 +25,16 @@ h6 {
   font-weight: 700;
 }
 
+#btn-cerrar
+{
+  background-color: #FF0080;
+}
+
+#registrar-produccion{
+
+  color:#ffffff;
+}
+
 #minavbar{
   background: #6635E8 !important;  
 }
@@ -41,10 +52,6 @@ h6 {
 .espacio{
   margin-bottom: 2em;
   margin-top: 2em;
-}
-
-.nuevaP{
-  color:black !important;
 }
 
 .rolesC{
@@ -76,4 +83,73 @@ h6 {
 
 .tags {
   font-weight: bold !important;
+}
+
+/*Items artista:
+*/
+
+#btn-masinfo-artista{
+  position: absolute;
+  right: 0;
+  margin:0;
+  background-color: #FF0080;
+}
+
+#icono-masinfo{
+  width: 18px;
+}
+
+#item-artista-name{
+  font-size: 2em;
+  text-align: center;
+}
+
+#item-artista-profesion{
+  font-size: 1.5em;
+  text-align: center;
+  font-family: 'Lobster', cursive;
+}
+
+#titulo-infoartista{
+  background-color: #FF0080;
+  font-size: 1.3em;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: bold; 
+}
+
+#titulo-produccion{
+  background-color: #FF0080;
+  font-size: 1.3em;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#subtitulo-produccion{
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+}
+
+#indicador-produccion{
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#info-produccion{
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+#email-artista{
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+}
+
+.linkedIn-artista{
+  align-content: center;
+}
+
+#busquedas{
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.4em;
 }

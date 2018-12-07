@@ -1,6 +1,6 @@
 body {
     background-attachment: fixed;
-    background-image: url("/wallpaper.jpg");
+    background-image: url("/wallpaper.png");
     background-size: 100% 100%;
     color: #66615b;
     font-size: 14px;
@@ -137,7 +137,7 @@ body {
       fill: #5299d3;
   }
   
-  .fa {
+  .fa{
       width: 18px;
       text-align: center;
   }

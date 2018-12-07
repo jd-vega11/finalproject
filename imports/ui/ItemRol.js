@@ -29,13 +29,13 @@ class ItemRol extends Component
       <div className="row">
         <div className="col-md-6">
           <div className="form-group">
-            <label className="rolesC">Rol</label>
+            <label>Rol</label>
             <input name="rol" className="form-control" required="required" type="text" onChange={this.handleNombreRol}/>
           </div>
         </div>
         <div className="col-md-6">
           <div className="form-group">
-            <label className="rolesC">Cantidad artistas </label>
+            <label>Cantidad artistas </label>
             <input name="cantArtistas" className="form-control" required="required" type="number" onChange={this.handleCantidadRol}/>
           </div>
         </div> 

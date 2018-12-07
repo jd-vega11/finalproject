@@ -33,7 +33,7 @@ class NavBar extends Component {
   cargarBoton() {
     if(this.state.mostrar===false)
     {
-      if(Artistas.find({idArtista: this.props.currentUser._id}).fetch()[0].headline == null)
+      if(typeof Artistas.find({idArtista: this.props.currentUser._id}).fetch()[0] !== "undefined" && Artistas.find({idArtista: this.props.currentUser._id}).fetch()[0].headline == null)
       {
         this.setState({ mostrar: true });
       }
@@ -48,7 +48,10 @@ class NavBar extends Component {
     const location = data.location.name;
     const numConnections = data.numConnections;
     const numPositions = data.positions._total;
-    Meteor.call('artistas.linkedInUpdate', Artistas.find({idArtista: this.props.currentUser._id}).fetch()[0]._id, firstName,lastName,headline,industry,location,numConnections,numPositions); 
+    const urlProfile = data.publicProfileUrl;
+    const picture = data.pictureUrl;
+    const email = data.emailAddress;
+    Meteor.call('artistas.linkedInUpdate', Artistas.find({idArtista: this.props.currentUser._id}).fetch()[0]._id, firstName,lastName,headline,industry,location,numConnections,numPositions, picture, email, urlProfile); 
     this.setState({mostrar: false});  
   }
 
@@ -73,7 +76,11 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    this.verificarLinkedIn();
+
+    if(Artistas.find({}).fetch().length !== 0){
+         this.verificarLinkedIn();
+      }
+
     console.log(window.location.href);
     var url_string = window.location.href;
     var url = new URL(url_string);

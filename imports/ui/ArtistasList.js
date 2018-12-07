@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 
 import ItemArtista from './ItemArtista.js';
-import ArtistaDetail from './ArtistaDetail.js';
+//import ArtistaDetail from './ArtistaDetail.js';
 import PropTypes from 'prop-types';
 import NavBar from './NavBar.js';
 import { Artistas } from '../api/artistas.js';
@@ -14,50 +14,62 @@ class ArtistasList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      mostrarDetail:undefined
+     this.state = {
+      filter:''
     };
-
-
-    this.handleSeleccionDetail = this.handleSeleccionDetail.bind(this);
-    this.handleCerrarDetail = this.handleCerrarDetail.bind(this);
+  /*   this.handleSeleccionDetail = this.handleSeleccionDetail.bind(this);
+    this.handleCerrarDetail = this.handleCerrarDetail.bind(this);*/
   }
 
   renderArtistas( )
   {
-    return this.props.usuarios.map((usuario)=>{
+    var filteredArtistas = this.props.usuarios;
+    if(this.state.filter !== '')
+    {
 
-      if(this.state.mostrarDetail)
+        filteredArtistas = this.props.usuarios.filter(
+        (artista) => {
+          return (artista.profile.nombre.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1) ||
+          (artista.profile.profesion.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1) ||
+          (artista.profile.intereses.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1) ||
+          (artista.profile.descripcion.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1);
+        });
+
+    }
+
+    return filteredArtistas.map((usuario)=>{
+
+      /*  if(this.state.mostrarDetail)
       {
         if(this.state.mostrarDetail === usuario._id)
         {
           return <div key={usuario._id}></div>;
         }
-      }      
+      }     */ 
        
       return (
-        <div key={usuario._id}>
+        <div key={usuario._id} className="col-md-3">
           <ItemArtista artista={usuario} handleSeleccionDetail={this.handleSeleccionDetail}/>
         </div>);
     });
   }
 
-  handleSeleccionDetail(artistaId)
+  /*  handleSeleccionDetail(artistaId)
   {
-    console.log('Selecciono el produccion con id: ', artistaId);
+    //console.log('Selecciono el produccion con id: ', artistaId);
     this.setState({
       mostrarDetail:artistaId      
     });
-  }
+  }*/
 
-  handleCerrarDetail()
+  /*  handleCerrarDetail()
   {
     this.setState({
       mostrarDetail:undefined      
     });
   }
-
-  renderDetail()
+*/
+  /* renderDetail()
   {
     if(this.state.mostrarDetail)
     {
@@ -67,6 +79,19 @@ class ArtistasList extends Component {
         handleCerrarDetail={this.handleCerrarDetail}/>        
       );
     }
+  }*/
+
+  updateFilter(evt) {
+    this.setState({filter: evt.target.value.substr(0, 20)});
+  }
+
+  renderBarraBusqueda()
+  {
+    return (
+      <div id="bloque-busquedas">
+        <span id="busquedas">Busca por palabras clave:  </span>
+        <input type="text" value={this.state.filter} placeholder='Ejemplo: bailarin' onChange={this.updateFilter.bind(this)}/>
+      </div>);
   }
 
   render() {
@@ -74,8 +99,8 @@ class ArtistasList extends Component {
       <div>  
         <NavBar />
         <div className="container pt-sm-3">
-          {this.renderDetail()}         
-          <div className="card-deck">
+          {this.renderBarraBusqueda()} 
+          <div className="row">
             {this.renderArtistas()}  
           </div>        
         </div>

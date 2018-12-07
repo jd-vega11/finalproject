@@ -17,7 +17,8 @@ class ProduccionesList extends Component {
 
     this.state = {
       mostrarDetail:undefined,
-      rowNumberDetail:1
+      rowNumberDetail:1,
+      filter:''
     };
 
 
@@ -27,8 +28,24 @@ class ProduccionesList extends Component {
 
   renderProducciones( )
   {
+    var filteredProducciones = this.props.producciones;
+    if(this.state.filter !== '')
+    {
+
+        filteredProducciones = this.props.producciones.filter(
+        (produccion) => {
+          return (produccion.nombre.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1) ||
+          (produccion.tipo.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1) ||
+          (produccion.lugar.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1) ||
+          (produccion.genero.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1) ||
+          (produccion.grupo.toLowerCase().indexOf(this.state.filter.toLowerCase()) !== -1);
+        });
+
+    }
+
+  
     var prodTemp = undefined;
-    return this.props.producciones.map((produc,i)=>{
+    return filteredProducciones.map((produc,i)=>{
 
       const nRow = Math.ceil((i+1)/4);
 
@@ -102,11 +119,27 @@ class ProduccionesList extends Component {
     }
   }
 
+  updateFilter(evt) {
+    this.setState({filter: evt.target.value.substr(0, 20),
+      mostrarDetail:undefined,
+      rowNumberDetail:1 });
+  }
+
+  renderBarraBusqueda()
+  {
+    return (
+      <div id="bloque-busquedas">
+        <span id="busquedas">Busca por palabras clave:  </span>
+        <input type="text" value={this.state.filter} placeholder='Ejemplo: danza' onChange={this.updateFilter.bind(this)}/>
+      </div>);
+  }
+
   render() {
     return (
       <div>  
         <NavBar />      
-        <div className="container pt-sm-3">         
+        <div className="container pt-sm-3">  
+          {this.renderBarraBusqueda()}      
           
           <div className="row">
             {this.renderProducciones()}  

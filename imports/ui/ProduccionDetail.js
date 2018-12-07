@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 //import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Aplicaciones } from '../api/aplicaciones.js';
+import {Link} from 'react-router-dom';
+
+import { Artistas } from '../api/artistas.js';
+
+
 
 class ProduccionDetail extends Component 
 {
@@ -59,7 +64,8 @@ class ProduccionDetail extends Component
     return roles.map((rol)=>{
       return (
         <li key={rol.key} className="list-group-item d-flex justify-content-between align-items-center">
-          {rol.rol}
+          
+          <span id="info-produccion">{rol.rol}</span>
 
           <span className="badge badge-primary badge-pill">Cantidad requerida: {rol.cantArtistas}</span>
           { Meteor.userId() == null || 
@@ -116,23 +122,41 @@ class ProduccionDetail extends Component
           <div className="col-md-4">
             <div className="card">        
               <div className="card-body">
-                <h6 className="card-title">{this.props.produccion.nombre}</h6>
-                <h6 className="card-subtitle mb-2 text-muted">Tipo: {this.props.produccion.tipo}</h6>
+                <h6 className="card-title" id="titulo-produccion">{this.props.produccion.nombre}</h6>
+                <h6 className="card-subtitle mb-2 text-muted" id="subtitulo-produccion">Tipo: {this.props.produccion.tipo}</h6>
               </div>
               <ul className="list-group list-group-flush">
-                <li className="list-group-item">¿Cuándo? El {this.props.produccion.fecha} a las {this.props.produccion.hora}</li>
-                <li className="list-group-item">¿Dónde? {this.props.produccion.lugar}</li>
-                <li className="list-group-item">Agrupación/compañia: {this.props.produccion.grupo}</li>
+                <li className="list-group-item">
+                  <span id="indicador-produccion">¿Cuándo? </span> 
+                  <span id="info-produccion"> El {this.props.produccion.fecha} a las {this.props.produccion.hora}</span></li>
+                <li className="list-group-item">
+                  <span id="indicador-produccion">¿Dónde? </span>
+                  <span id="info-produccion"> {this.props.produccion.lugar}</span></li>
+                <li className="list-group-item">
+                  <span id="indicador-produccion">Agrupación/compañia: </span>
+                  <span id="info-produccion"> {this.props.produccion.grupo}</span></li>
               </ul>            
             </div>
           </div>
           <div className ="col-md-7">
-            <div className="card">        
+            <div className="card">
+              <Link to={{pathname: `/artistaslist/${this.props.produccion.usuario}`, state: {artista: Artistas.findOne({idArtista:this.props.produccion.usuario})}}}>
+                <button type="button" className="btn" id="btn-masinfo-artista">
+                  <i className="fas fa-search-plus" id="icono-masinfo"></i>
+                  ¿Quién publica?
+                </button>
+              </Link>        
               <div className="card-body">
-                <h6 className="card-title"> Genero: {this.props.produccion.genero}</h6>
-                <h6 className="card-subtitle mb-2 text-muted">Duracion: {this.props.produccion.duracion} minutos</h6>
-                <p className="card-text">Descripcion: {this.props.produccion.descripcion}</p>
-                <p className="card-text">Roles</p>
+                <h6 className="card-title"> 
+                  <span id="indicador-produccion">Genero: </span>
+                  <span id="info-produccion"> {this.props.produccion.genero}</span></h6>
+                <h6 className="card-subtitle">
+                  <span id="indicador-produccion">Duracion: </span>
+                  <span id="info-produccion"> {this.props.produccion.duracion} minutos</span></h6>
+                <p className="card-text">
+                  <span id="indicador-produccion">Descripcion: </span>
+                  <span id="info-produccion">{this.props.produccion.descripcion}</span></p>
+                <p className="card-text" id="indicador-produccion">Roles</p>
               </div>            
               <ul className="list-group">
                 {this.renderRoles()}
@@ -140,7 +164,7 @@ class ProduccionDetail extends Component
             </div>
           </div>
           <div className = "col-md-1">
-            <button type="button" className="btn btn-primary" onClick={this.props.handleCerrarDetail}>X</button>
+            <button type="button" className="btn" id="btn-cerrar" onClick={this.props.handleCerrarDetail}>X</button>
           </div>
         </div> 
       </div> 

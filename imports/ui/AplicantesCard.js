@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import { Artistas } from '../api/artistas.js';
 
 export default class AplicantesCard extends Component {
 
@@ -66,8 +68,8 @@ export default class AplicantesCard extends Component {
 
       return(
         <div className="card-body">
-          <a href="#" className="btn btn-danger pr-sm-3" onClick={this.aceptarAplicacion}>Aceptar</a>
-          <a href="#" className="btn btn-danger" onClick={this.rechazarAplicacion}>Rechazar</a>
+          <a href="#" className="btn pr-sm-3 btn-primary"onClick={this.aceptarAplicacion}>Aceptar</a>
+          <a href="#" className="btn btn-primary" onClick={this.rechazarAplicacion}>Rechazar</a>
         </div>
       );
 
@@ -78,10 +80,27 @@ export default class AplicantesCard extends Component {
     return (
       <div className="card">        
         <ul className="list-group list-group-flush">
-          <li className="list-group-item"><strong>Nombre Producción: </strong> {this.props.produccion.nombre}</li>
-          <li className="list-group-item"><strong>Descripción: </strong> {this.props.produccion.descripcion}</li>
-          <li className="list-group-item"><strong>Nombre Aplicante: </strong>{this.props.aplicacion.usernameAplicante}</li>          
-          <li className="list-group-item"><strong>Rol aplicado: </strong>{this.props.aplicacion.rol.rol}</li>
+          <li className="list-group-item">
+            <span id="indicador-produccion">Nombre Producción: </span> 
+            <span id="info-produccion">{this.props.produccion.nombre}</span></li>
+          
+          <li className="list-group-item">
+            <span id="indicador-produccion">Descripción: </span> 
+            <span id="info-produccion">{this.props.produccion.descripcion}</span></li>
+          
+          <li className="list-group-item">
+            <span id="indicador-produccion">Aplicante: </span>
+            <Link to={{pathname: `/artistaslist/${this.props.aplicacion.idAplicante}`, state: {artista: Artistas.findOne({idArtista:this.props.aplicacion.idAplicante})}}}>
+              <button type="button" className="btn btn-primary">
+                <i className="fas fa-search-plus" id="icono-masinfo"></i>
+                {this.props.aplicacion.usernameAplicante}
+              </button>
+            </Link> 
+          </li>          
+          
+          <li className="list-group-item">
+            <span id="indicador-produccion">Rol aplicado: </span>
+            <span id="info-produccion">{this.props.aplicacion.rol.rol}</span></li>
         </ul>
 
         {this.renderBotones()}        
@@ -90,9 +109,9 @@ export default class AplicantesCard extends Component {
           <div className="card-body">
               
             {this.props.aplicacion.leidaPublicador === false ? 
-              <a href="#" className="btn btn-danger" onClick={this.marcarComoLeida}>Marcar como leída</a>
+              <a href="#" className="btn btn-primary" onClick={this.marcarComoLeida}>Marcar como leída</a>
               :
-              <a href="#" className="btn btn-danger" onClick={this.marcarComoNoLeida}>Dejar no leída</a>}
+              <a href="#" className="btn btn-primary" onClick={this.marcarComoNoLeida}>Dejar no leída</a>}
           </div> : ''}
       </div>
     );

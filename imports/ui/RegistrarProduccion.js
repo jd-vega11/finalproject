@@ -185,87 +185,89 @@ class RegistrarProduccion extends Component {
 
   render() {
     return (
-      <div className="container">
-        {this.renderError()}           
-        <div className="row">
-          <div className="col-md-12">
-            <form onSubmit={this.handleSubmit}>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label className="nuevaP">Nombre</label>
-                    <input name="nombre" ref={(nombre) => this.nombre=nombre} className="form-control" required="required" type="text"/>
+      <div className="submit">
+        <div className="container" id="registrar-produccion">
+          {this.renderError()}           
+          <div className="row">
+            <div className="col-md-12">
+              <form onSubmit={this.handleSubmit}>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Nombre</label>
+                      <input name="nombre" ref={(nombre) => this.nombre=nombre} className="form-control" required="required" type="text"/>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Tipo</label>
+                      <input name="tipo" ref={(tipo) => this.tipo=tipo} className="form-control" required="required" type="text"/>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label className="nuevaP">Tipo</label>
-                    <input name="tipo" ref={(tipo) => this.tipo=tipo} className="form-control" required="required" type="text"/>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Fecha</label>
+                      <input name="fecha" ref={(fecha) => this.fecha=fecha} className="form-control" required="required" type="date"/>
+                    </div>
                   </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Hora</label>
+                      <input name="hora" ref={(hora) => this.hora=hora} className="form-control" required="required" type="time"/>
+                    </div>
+                  </div> 
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label className="nuevaP">Fecha</label>
-                    <input name="fecha" ref={(fecha) => this.fecha=fecha} className="form-control" required="required" type="date"/>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Lugar</label>
+                      <input name="lugar" ref={(lugar) => this.lugar=lugar} className="form-control" required="required" type="text"/>
+                    </div>
                   </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Duración en minutos</label>
+                      <input name="duracion" ref={(duracion) => this.duracion=duracion} className="form-control" type="number"/>
+                    </div>
+                  </div> 
                 </div>
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label className="nuevaP">Hora</label>
-                    <input name="hora" ref={(hora) => this.hora=hora} className="form-control" required="required" type="time"/>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Genero</label>
+                      <input name="genero" ref={(genero) => this.genero=genero} className="form-control" required="required" type="text"/>
+                    </div>
                   </div>
-                </div> 
-              </div>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label className="nuevaP">Lugar</label>
-                    <input name="lugar" ref={(lugar) => this.lugar=lugar} className="form-control" required="required" type="text"/>
-                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Grupo/Compañia</label>
+                      <input name="grupo" ref={(grupo) => this.grupo=grupo} className="form-control" required="required" type="text"/>
+                    </div>
+                  </div> 
                 </div>
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label className="nuevaP">Duración en minutos</label>
-                    <input name="duracion" ref={(duracion) => this.duracion=duracion} className="form-control" type="number"/>
-                  </div>
-                </div> 
-              </div>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label className="nuevaP">Genero</label>
-                    <input name="genero" ref={(genero) => this.genero=genero} className="form-control" required="required" type="text"/>
-                  </div>
+                <div className="form-group">
+                  <label>Descripción</label>
+                  <textarea className="form-control" ref={(descripcion) => this.descripcion=descripcion} rows="4"/>
                 </div>
-                <div className="col-md-6">
-                  <div className="form-group">
-                    <label className="nuevaP">Grupo/Compañia</label>
-                    <input name="grupo" ref={(grupo) => this.grupo=grupo} className="form-control" required="required" type="text"/>
-                  </div>
-                </div> 
-              </div>
-              <div className="form-group">
-                <label className="nuevaP">Descripción</label>
-                <textarea className="form-control" ref={(descripcion) => this.descripcion=descripcion} rows="4"/>
-              </div>
 
-              {this.renderRoles()}
+                {this.renderRoles()}
 
-              <div className="row">
-                <b className="nuevaP">Debe agregar al menos un rol para registrar la producción</b>
-              </div>
-              <div className="row">
-                <button type="button" className="nuevaP espacio" onClick={this.agregarRol}> Agregar rol</button>
-              </div>       
-              
-              {this.appMainPage( )}    
+                <div className="row">
+                  <b>Debe agregar al menos un rol para registrar la producción</b>
+                </div>
+                <div className="row">
+                  <button type="button" className="espacio btn btn-primary" onClick={this.agregarRol}> Agregar rol</button>
+                </div>       
+                
+                {this.appMainPage( )}    
 
-              <div className="row">         
-                <button type="submit" className="btn btn-submit nuevaP"> Agregar Produccion </button>
-              </div>
-            </form>
+                <div className="row">         
+                  <button type="submit" className="btn btn-primary"> Agregar Produccion </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
